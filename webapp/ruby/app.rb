@@ -8,6 +8,18 @@ class App < Sinatra::Base
     set :public_folder, File.expand_path('../../public', __FILE__)
     set :avatar_max_size, 1 * 1024 * 1024
 
+    enable :logging
+    access_log = File.new("/home/isucon/isubata/webapp/ruby/log/access.log", 'a+')
+    access_log.sync = true
+    use Rack::CommonLogger, access_log
+
+    error_log = File.new("/home/isucon/isubata/webapp/ruby/log/error.log","a+")
+    error_log.sync = true
+
+    before {
+        env["rack.errors"] = error_log
+    }
+
     enable :sessions
   end
 
@@ -342,8 +354,8 @@ class App < Sinatra::Base
     @db_client = Mysql2::Client.new(
       host: ENV.fetch('ISUBATA_DB_HOST') { 'localhost' },
       port: ENV.fetch('ISUBATA_DB_PORT') { '3306' },
-      username: ENV.fetch('ISUBATA_DB_USER') { 'root' },
-      password: ENV.fetch('ISUBATA_DB_PASSWORD') { '' },
+      username: ENV.fetch('ISUBATA_DB_USER') { 'isucon' },
+      password: ENV.fetch('ISUBATA_DB_PASSWORD') { 'isucon' },
       database: 'isubata',
       encoding: 'utf8mb4'
     )
