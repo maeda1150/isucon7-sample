@@ -57,6 +57,11 @@ xbuild/python-install -f 3.6.2   /home/isucon/local/python
 xbuild/php-install    -f 7.1.9   /home/isucon/local/php -- --disable-phar --with-pcre-regex --with-zlib --enable-fpm --enable-pdo --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-openssl --with-pcre-regex --with-pcre-dir --with-libxml-dir --enable-opcache --enable-bcmath --with-bz2 --enable-calendar --enable-cli --enable-shmop --enable-sysvsem --enable-sysvshm --enable-sysvmsg --enable-mbregex --enable-mbstring --with-mcrypt --enable-pcntl --enable-sockets --with-curl --enable-zip --with-pearAA
 ```
 
+add path
+```
+$ export PATH=$HOME/local/ruby/bin:$PATH
+```
+
 ### ベンチマーカーの準備
 
 Goを使うのでこれだけは最初に環境変数を設定しておく
